@@ -88,8 +88,8 @@ our_model = our_model.features #removing the classifier
 for para in our_model.parameters():
     para.requires_grad_(False)
 
-content_p = preprocess_img("Project-NST/content11.jpg")
-style_p = preprocess_img("Project-NST/style12.jpg")
+content_p = preprocess_img("Data/content11.jpg")
+style_p = preprocess_img("Data/style12.jpg")
 #use gpu if available
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 if(device != 'cpu'):
@@ -137,7 +137,7 @@ for i in range(epochs):
     optimizer.step()
 
     if i%show_every == 0:
-        print("total loass at epoch {} : {}".format(i,t_loss))
+        print("total loss at epoch {} : {}".format(i,t_loss))
         results.append(deprocess_img(target.detach()))
 
 plt.figure(figsize = (10,8))
